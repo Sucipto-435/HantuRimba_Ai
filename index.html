@@ -6,14 +6,13 @@
     <title>HANTURIMBA_Ai</title>
     <style>
         :root {
-            --bg-deep: #050505;
-            --bg-card: #0c0c0c;
-            --primary-red: #8a0303;
-            --accent-gold: #d4af37;
-            --accent-gold-hover: #f3c643;
-            --text-main: #e0e0e0;
-            --text-muted: #888888;
-            --border-color: #222222;
+            --bg-deep: #020202;
+            --bg-card: #070707;
+            --primary-red: #6e0202;
+            --accent-gold: #c5a028;
+            --text-main: #e2e2e2;
+            --text-muted: #858585;
+            --border-color: #1a1a1a;
         }
 
         * {
@@ -36,23 +35,23 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(5, 5, 5, 0.95);
+            background-color: rgba(2, 2, 2, 0.95);
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
 
         .logo {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--accent-gold);
             letter-spacing: 2px;
             text-decoration: none;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            text-shadow: 0 0 12px rgba(197, 160, 40, 0.4);
         }
 
         nav ul {
@@ -64,7 +63,8 @@
         nav ul li a {
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             transition: color 0.3s ease;
         }
 
@@ -72,7 +72,6 @@
             color: var(--accent-gold);
         }
 
-        /* Hamburger Menu for Mobile */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -87,7 +86,7 @@
             transition: 0.3s;
         }
 
-        /* Hero Section */
+        /* Hero Section dengan Tema Hutan Seram, Akar, & Hantu */
         #home {
             position: relative;
             height: 100vh;
@@ -97,11 +96,27 @@
             align-items: center;
             text-align: center;
             padding: 0 1rem;
-            background: linear-gradient(135deg, #050505 0%, #150202 100%);
             overflow: hidden;
+            /* Latar belakang hutan mati/seram dengan aksen gelap dan merah darah */
+            background: linear-gradient(rgba(2, 2, 2, 0.75), rgba(5, 1, 1, 0.9)), 
+                        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
         }
 
-        /* Fog Effect */
+        /* Efek Vinyet / Siluet Akar & Suasana Mencekam di Pinggiran */
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.9) 90%),
+                        linear-gradient(to top, #020202 0%, transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Efek Kabut Hutan Merayap */
         .fog-container {
             position: absolute;
             top: 0;
@@ -109,44 +124,44 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: 1;
+            z-index: 2;
             pointer-events: none;
-            opacity: 0.25;
+            opacity: 0.4;
         }
 
         .fog {
             position: absolute;
-            background: radial-gradient(circle, rgba(138,3,3,0.3) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(110,2,2,0.45) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
-            filter: blur(60px);
-            animation: drift 20s infinite alternate linear;
+            filter: blur(80px);
+            animation: drift 25s infinite alternate linear;
         }
 
         .fog:nth-child(1) {
-            width: 600px;
-            height: 600px;
-            top: -100px;
+            width: 700px;
+            height: 700px;
+            top: -200px;
             left: -200px;
-            animation-duration: 25s;
+            animation-duration: 28s;
         }
 
         .fog:nth-child(2) {
-            width: 700px;
-            height: 700px;
-            bottom: -200px;
-            right: -200px;
-            animation-duration: 30s;
+            width: 800px;
+            height: 800px;
+            bottom: -250px;
+            right: -250px;
+            animation-duration: 35s;
             animation-direction: alternate-reverse;
         }
 
         @keyframes drift {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.2); }
+            100% { transform: translate(140px, 70px) scale(1.3); }
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             max-width: 800px;
         }
 
@@ -155,14 +170,15 @@
             color: var(--accent-gold);
             margin-bottom: 0.5rem;
             letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(138, 3, 3, 0.6);
+            text-shadow: 0 0 30px rgba(110, 2, 2, 0.9), 0 0 10px rgba(0,0,0,0.8);
         }
 
         .hero-content p {
             font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-muted);
+            color: #b0b0b0;
             margin-bottom: 2rem;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
 
         .hero-buttons {
@@ -173,8 +189,8 @@
         }
 
         .btn {
-            padding: 0.75rem 1.75rem;
-            font-size: 0.95rem;
+            padding: 0.75rem 1.6rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-decoration: none;
             border-radius: 4px;
@@ -192,19 +208,19 @@
         }
 
         .btn-primary:hover {
-            background-color: #a80404;
-            box-shadow: 0 0 15px rgba(138, 3, 3, 0.8);
+            background-color: #8c0303;
+            box-shadow: 0 0 20px rgba(110, 2, 2, 1);
         }
 
         .btn-outline {
-            background-color: transparent;
+            background-color: rgba(0, 0, 0, 0.6);
             color: var(--accent-gold);
             border: 1px solid var(--accent-gold);
         }
 
         .btn-outline:hover {
-            background-color: rgba(212, 175, 55, 0.1);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            background-color: rgba(197, 160, 40, 0.15);
+            box-shadow: 0 0 15px rgba(197, 160, 40, 0.5);
         }
 
         /* Section Layout Common Styles */
@@ -216,8 +232,8 @@
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
             color: var(--text-main);
             letter-spacing: 2px;
             position: relative;
@@ -226,7 +242,7 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 50px;
+            width: 45px;
             height: 2px;
             background-color: var(--primary-red);
             margin: 10px auto 0 auto;
@@ -234,26 +250,28 @@
 
         /* Playlist Section */
         #playlist {
-            background-color: #070707;
+            background-color: #050505;
             max-width: 100%;
             padding-left: 5%;
             padding-right: 5%;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .playlist-wrapper {
-            max-width: 900px;
+            max-width: 850px;
             margin: 0 auto;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             background: var(--bg-card);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
         }
 
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Rasio 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
         }
 
@@ -290,23 +308,24 @@
 
         .album-image {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #111, #220202);
+            height: 180px;
+            background: linear-gradient(135deg, #0d0d0d, #1a0202);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-bottom: 1px solid var(--border-color);
             position: relative;
+            letter-spacing: 2px;
         }
 
         .album-image::before {
             content: 'HANTURIMBA_Ai';
             position: absolute;
             font-weight: bold;
-            color: rgba(255, 255, 255, 0.05);
-            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.03);
+            font-size: 1.3rem;
             letter-spacing: 4px;
         }
 
@@ -319,9 +338,16 @@
         }
 
         .album-info h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
             color: var(--accent-gold);
+        }
+
+        .album-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
         }
 
         .btn-listen {
@@ -342,17 +368,17 @@
             color: #ffffff;
         }
 
-        /* About Section */
-        #about {
+        /* About & Contact Section */
+        #about, #contact {
             text-align: center;
-            background: radial-gradient(circle at center, #0f0202 0%, #050505 70%);
+            background: radial-gradient(circle at center, #0a0101 0%, #020202 70%);
             max-width: 100%;
         }
 
         .about-text {
             max-width: 700px;
             margin: 0 auto;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.8;
             color: var(--text-muted);
         }
@@ -380,11 +406,11 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: rgba(5, 5, 5, 0.98);
+                background-color: rgba(2, 2, 2, 0.98);
                 border-bottom: 1px solid var(--border-color);
                 padding: 1.5rem 0;
                 text-align: center;
-                gap: 1rem;
+                gap: 1.2rem;
             }
 
             nav ul.active {
@@ -405,9 +431,10 @@
         <nav>
             <ul id="nav-menu">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#albums">Albums</a></li>
                 <li><a href="#playlist">Playlist</a></li>
+                <li><a href="#albums">Albums</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
         <div class="menu-toggle" id="mobile-menu">
@@ -417,7 +444,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section: Hutan Seram & Kabut Horor -->
     <section id="home">
         <div class="fog-container">
             <div class="fog"></div>
@@ -437,53 +464,49 @@
         </div>
     </section>
 
-    <!-- Albums Section -->
-    <section id="albums">
-        <h2 class="section-title">Albums</h2>
-        <div class="albums-grid">
-            <!-- Album 1 -->
-            <div class="album-card">
-                <div class="album-image">Placeholder Art</div>
-                <div class="album-info">
-                    <div>
-                        <h3>Vol. 1</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Dark Ambient & Sinister Soundscapes</p>
-                    </div>
-                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
-                </div>
-            </div>
-            <!-- Album 2 -->
-            <div class="album-card">
-                <div class="album-image">Placeholder Art</div>
-                <div class="album-info">
-                    <div>
-                        <h3>Vol. 2</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Apocalyptic Black Metal & Horror Chants</p>
-                    </div>
-                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
-                </div>
-            </div>
-            <!-- Album 3 -->
-            <div class="album-card">
-                <div class="album-image">Placeholder Art</div>
-                <div class="album-info">
-                    <div>
-                        <h3>Vol. 3</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Cinematic Gothic Chaos</p>
-                    </div>
-                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Playlist Section -->
     <section id="playlist">
         <h2 class="section-title">Playlist</h2>
         <div class="playlist-wrapper">
             <div class="video-container">
-                <!-- Menggunakan embed YouTube playlist resmi -->
                 <iframe src="https://www.youtube.com/embed/videoseries?list=PLGKmz_9zfn2h0z70cJwewpL0cUkdmZusj" title="HANTURIMBA_Ai YouTube Playlist" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Albums Section -->
+    <section id="albums">
+        <h2 class="section-title">Albums</h2>
+        <div class="albums-grid">
+            <div class="album-card">
+                <div class="album-image">Placeholder Art</div>
+                <div class="album-info">
+                    <div>
+                        <h3>Vol. 1</h3>
+                        <p>Dark Ambient & Sinister Soundscapes</p>
+                    </div>
+                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
+                </div>
+            </div>
+            <div class="album-card">
+                <div class="album-image">Placeholder Art</div>
+                <div class="album-info">
+                    <div>
+                        <h3>Vol. 2</h3>
+                        <p>Apocalyptic Black Metal & Horror Chants</p>
+                    </div>
+                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
+                </div>
+            </div>
+            <div class="album-card">
+                <div class="album-image">Placeholder Art</div>
+                <div class="album-info">
+                    <div>
+                        <h3>Vol. 3</h3>
+                        <p>Cinematic Gothic Chaos</p>
+                    </div>
+                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
+                </div>
             </div>
         </div>
     </section>
@@ -496,6 +519,14 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="about-text">
+            <p>Connect and subscribe on our official channel: <br><a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" style="color: var(--accent-gold); text-decoration: none; font-weight: bold;">@HantuRimba_Ai</a></p>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 HANTURIMBA_Ai</p>
@@ -503,7 +534,6 @@
 
     <!-- JavaScript Murni -->
     <script>
-        // Toggle Mobile Menu
         const mobileMenu = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
 
@@ -511,7 +541,6 @@
             navMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking a link
         document.querySelectorAll('nav ul li a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
