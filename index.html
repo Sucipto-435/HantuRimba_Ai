@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HANTURIMBA_Ai</title>
+    <style>
+        :root {
+            --bg-deep: #050505;
+            --bg-card: #0c0c0c;
+            --primary-red: #8a0303;
+            --accent-gold: #d4af37;
+            --accent-gold-hover: #f3c643;
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            --border-color: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(5, 5, 5, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hamburger Menu for Mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        #home {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            background: linear-gradient(135deg, #050505 0%, #150202 100%);
+            overflow: hidden;
+        }
+
+        /* Fog Effect */
+        .fog-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.25;
+        }
+
+        .fog {
+            position: absolute;
+            background: radial-gradient(circle, rgba(138,3,3,0.3) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: drift 20s infinite alternate linear;
+        }
+
+        .fog:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            top: -100px;
+            left: -200px;
+            animation-duration: 25s;
+        }
+
+        .fog:nth-child(2) {
+            width: 700px;
+            height: 700px;
+            bottom: -200px;
+            right: -200px;
+            animation-duration: 30s;
+            animation-direction: alternate-reverse;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(138, 3, 3, 0.6);
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.75rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: #ffffff;
+            border: 1px solid var(--primary-red);
+        }
+
+        .btn-primary:hover {
+            background-color: #a80404;
+            box-shadow: 0 0 15px rgba(138, 3, 3, 0.8);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Section Layout Common Styles */
+        section {
+            padding: 5rem 5% 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-red);
+            margin: 10px auto 0 auto;
+        }
+
+        /* Playlist Section */
+        #playlist {
+            background-color: #070707;
+            max-width: 100%;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .playlist-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Albums Section */
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .album-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .album-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+        }
+
+        .album-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #111, #220202);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .album-image::before {
+            content: 'HANTURIMBA_Ai';
+            position: absolute;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.05);
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+        }
+
+        .album-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .album-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .btn-listen {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-listen:hover {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+            color: #ffffff;
+        }
+
+        /* About Section */
+        #about {
+            text-align: center;
+            background: radial-gradient(circle at center, #0f0202 0%, #050505 70%);
+            max-width: 100%;
+        }
+
+        .about-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .about-text span {
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background-color: var(--bg-deep);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(5, 5, 5, 0.98);
+                border-bottom: 1px solid var(--border-color);
+                padding: 1.5rem 0;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <a href="#home" class="logo">HANTURIMBA_Ai</a>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#albums">Albums</a></li>
+                <li><a href="#playlist">Playlist</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="fog-container">
+            <div class="fog"></div>
+            <div class="fog"></div>
+        </div>
+        <div class="hero-content">
+            <h1>HANTURIMBA_Ai</h1>
+            <p>Music &bull; Horror &bull; AI &bull; Metal</p>
+            <div class="hero-buttons">
+                <a href="https://youtube.com/playlist?list=PLGKmz_9zfn2h0z70cJwewpL0cUkdmZusj" target="_blank" class="btn btn-primary">
+                    &#9654; Play Playlist
+                </a>
+                <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn btn-outline">
+                    &#128250; Subscribe
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Albums Section -->
+    <section id="albums">
+        <h2 class="section-title">Albums</h2>
+        <div class="albums-grid">
+            <!-- Album 1 -->
+            <div class="album-card">
+                <div class="album-image">Placeholder Art</div>
+                <div class="album-info">
+                    <div>
+                        <h3>Vol. 1</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Dark Ambient & Sinister Soundscapes</p>
+                    </div>
+                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
+                </div>
+            </div>
+            <!-- Album 2 -->
+            <div class="album-card">
+                <div class="album-image">Placeholder Art</div>
+                <div class="album-info">
+                    <div>
+                        <h3>Vol. 2</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Apocalyptic Black Metal & Horror Chants</p>
+                    </div>
+                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
+                </div>
+            </div>
+            <!-- Album 3 -->
+            <div class="album-card">
+                <div class="album-image">Placeholder Art</div>
+                <div class="album-info">
+                    <div>
+                        <h3>Vol. 3</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Cinematic Gothic Chaos</p>
+                    </div>
+                    <a href="https://www.youtube.com/@HantuRimba_Ai" target="_blank" class="btn-listen">Listen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playlist Section -->
+    <section id="playlist">
+        <h2 class="section-title">Playlist</h2>
+        <div class="playlist-wrapper">
+            <div class="video-container">
+                <!-- Menggunakan embed YouTube playlist resmi -->
+                <iframe src="https://www.youtube.com/embed/videoseries?list=PLGKmz_9zfn2h0z70cJwewpL0cUkdmZusj" title="HANTURIMBA_Ai YouTube Playlist" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About</h2>
+        <div class="about-text">
+            <p><span>HANTURIMBA_Ai</span> adalah proyek musik AI bertema horror, metal, cinematic, dan dark atmosphere.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 HANTURIMBA_Ai</p>
+    </footer>
+
+    <!-- JavaScript Murni -->
+    <script>
+        // Toggle Mobile Menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
