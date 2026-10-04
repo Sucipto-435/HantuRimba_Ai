@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HANTU RIMBA_Ai — Official Website</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    background:
+        radial-gradient(circle at 50% 30%,rgba(70,70,70,.18),transparent 35%),
+        linear-gradient(#020202,#090909 50%,#020202);
+}
+
+.fog{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-4;
+    pointer-events:none;
+    background:
+        radial-gradient(ellipse at 20% 70%,rgba(150,150,150,.07),transparent 35%),
+        radial-gradient(ellipse at 80% 40%,rgba(150,150,150,.05),transparent 40%);
+    animation:fogMove 15s infinite alternate ease-in-out;
+}
+
+@keyframes fogMove{
+    from{transform:translateX(-3%);}
+    to{transform:translateX(3%);}
+}
+
+.trees{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:28vh;
+    z-index:-3;
+    opacity:.35;
+    background:
+        linear-gradient(135deg,transparent 40%,#000 41%,#000 45%,transparent 46%),
+        linear-gradient(45deg,transparent 40%,#000 41%,#000 45%,transparent 46%);
+    background-size:90px 90px;
+}
+
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.35) 1px,transparent 1px);
+    background-size:90px 90px;
+    animation:particlesMove 20s linear infinite;
+    opacity:.2;
+}
+
+@keyframes particlesMove{
+    from{background-position:0 0;}
+    to{background-position:90px 90px;}
+}
+
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.nav{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.menu{
+    display:flex;
+    gap:22px;
+}
+
+.menu a{
+    color:#ccc;
+    text-decoration:none;
+    font-size:13px;
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:#fff;
+}
+
+.menu-btn{
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* GENERAL */
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:90px 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:28px;
+    letter-spacing:5px;
+    margin-bottom:45px;
+}
+
+.section-title span{
+    display:block;
+    font-size:11px;
+    letter-spacing:3px;
+    color:#777;
+    margin-top:10px;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:100px 20px 60px;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:clamp(38px,8vw,82px);
+    letter-spacing:8px;
+    margin-bottom:18px;
+}
+
+.hero .sub{
+    color:#aaa;
+    letter-spacing:5px;
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#777;
+    margin-bottom:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 28px;
+    border:1px solid rgba(255,255,255,.3);
+    color:#fff;
+    text-decoration:none;
+    letter-spacing:3px;
+    font-size:12px;
+    background:rgba(255,255,255,.04);
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+.btn:hover{
+    background:rgba(255,255,255,.12);
+    transform:translateY(-2px);
+}
+
+/* VIDEO */
+.video-box{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+    background:#000;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+
+.video-box iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+/* CARDS */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    position:relative;
+    min-height:190px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.03);
+    text-decoration:none;
+    color:#fff;
+    transition:.4s;
+}
+
+.card img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        transparent 20%,
+        rgba(0,0,0,.9)
+    );
+}
+
+.card-content{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:2;
+    padding:22px;
+}
+
+.card h3{
+    font-size:17px;
+    letter-spacing:2px;
+}
+
+.card p{
+    color:#999;
+    font-size:11px;
+    margin-top:7px;
+    letter-spacing:1px;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(255,255,255,.35);
+}
+
+.card:hover img{
+    transform:scale(1.06);
+}
+
+/* PLAYLIST */
+.playlist{
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+    padding:45px 25px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.03);
+    backdrop-filter:blur(10px);
+}
+
+.playlist h3{
+    font-size:24px;
+    letter-spacing:3px;
+    margin-bottom:12px;
+}
+
+.playlist p{
+    color:#888;
+    margin-bottom:25px;
+}
+
+/* ABOUT */
+.about{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+    color:#999;
+    line-height:1.9;
+    font-size:14px;
+}
+
+/* FOOTER */
+footer{
+    border-top:1px solid rgba(255,255,255,.08);
+    padding:40px 20px;
+    text-align:center;
+    color:#666;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+footer strong{
+    display:block;
+    color:#aaa;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    .menu{
+        position:absolute;
+        top:65px;
+        right:15px;
+        width:200px;
+        padding:20px;
+        flex-direction:column;
+        background:rgba(5,5,5,.95);
+        border:1px solid rgba(255,255,255,.1);
+        display:none;
+    }
+
+    .menu.active{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:70px 15px;
+    }
+
+    .hero h1{
+        letter-spacing:5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="fog"></div>
+<div class="trees"></div>
+<div class="particles"></div>
+
+<header>
+    <div class="nav">
+
+        <div class="logo">HANTU RIMBA_Ai</div>
+
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+        <nav class="menu" id="menu">
+            <a href="#home">HOME</a>
+            <a href="#music">MUSIC</a>
+            <a href="#playlist">PLAYLIST</a>
+            <a href="#videos">VIDEOS</a>
+            <a href="#visuals">VISUALS</a>
+            <a href="#about">ABOUT</a>
+        </nav>
+
+    </div>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="sub">OFFICIAL WEBSITE</div>
+
+        <h1>HANTU RIMBA_Ai</h1>
+
+        <p>
+            Music • Stories • Visuals
+        </p>
+
+        <a class="btn"
+           href="https://www.youtube.com/@HantuRimba_Ai"
+           target="_blank">
+            ENTER THE WORLD
+        </a>
+
+    </div>
+
+</section>
+
+<!-- LATEST VIDEO -->
+<section>
+
+    <div class="section-title">
+        LATEST VIDEO
+        <span>THE NEWEST JOURNEY</span>
+    </div>
+
+    <div class="video-box">
+
+        <iframe
+            src="https://www.youtube.com/embed/tE_6r60ueQM"
+            title="Bukan Manusia"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+
+    <div class="section-title">
+        MUSIC
+        <span>THE JOURNEY CONTINUES</span>
+    </div>
+
+    <div class="grid">
+
+        <a class="card"
+           href="https://youtu.be/eLv_PmDKK8Y"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/eLv_PmDKK8Y/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>VOLUME 01</h3>
+                <p>THE BEGINNING</p>
+            </div>
+
+        </a>
+
+        <a class="card"
+           href="https://youtu.be/xNpfA2FXLJM"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/xNpfA2FXLJM/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>VOLUME 02</h3>
+                <p>THE JOURNEY</p>
+            </div>
+
+        </a>
+
+        <a class="card"
+           href="https://youtu.be/NbzcJSuNdxA"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/NbzcJSuNdxA/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>VOLUME 03</h3>
+                <p>THE SHADOW</p>
+            </div>
+
+        </a>
+
+        <a class="card"
+           href="https://youtu.be/B1hV4klzt5o"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/B1hV4klzt5o/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>VOLUME 04</h3>
+                <p>OFFICIAL ALBUM 2026</p>
+            </div>
+
+        </a>
+
+        <a class="card"
+           href="https://youtu.be/6tct_yMZDHo"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/6tct_yMZDHo/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>THE AWAKENING</h3>
+                <p>KEBANGKITAN</p>
+            </div>
+
+        </a>
+
+        <a class="card"
+           href="https://youtu.be/EtPhk4npXCc"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/EtPhk4npXCc/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>THE LAST JOURNEY</h3>
+                <p>PERJALANAN TERAKHIR</p>
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- PLAYLIST -->
+<section id="playlist">
+
+    <div class="section-title">
+        PLAYLIST
+        <span>COMPLETE JOURNEY</span>
+    </div>
+
+    <div class="playlist">
+
+        <h3>HANTU RIMBA_Ai</h3>
+
+        <p>
+            Listen to the complete journey of Hantu Rimba.
+        </p>
+
+        <a
+            class="btn"
+            href="https://youtube.com/playlist?list=PLGKmz_9zfn2h0z70cJwewpL0cUkdmZusj"
+            target="_blank">
+            OPEN PLAYLIST
+        </a>
+
+    </div>
+
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+
+    <div class="section-title">
+        VIDEOS
+        <span>WATCH THE WORLD</span>
+    </div>
+
+    <div style="text-align:center;">
+
+        <a
+            class="btn"
+            href="https://www.youtube.com/@HantuRimba_Ai"
+            target="_blank">
+            OPEN YOUTUBE CHANNEL
+        </a>
+
+    </div>
+
+</section>
+
+<!-- VISUALS -->
+<section id="visuals">
+
+    <div class="section-title">
+        VISUALS
+        <span>ENTER THE IMAGES</span>
+    </div>
+
+    <div class="grid">
+
+        <a class="card"
+           href="https://youtu.be/xZNU0-E9ENI"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/xZNU0-E9ENI/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>THE FOREST</h3>
+                <p>WATCH VIDEO</p>
+            </div>
+
+        </a>
+
+        <a class="card"
+           href="https://youtu.be/jkUWlUh27xs"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/jkUWlUh27xs/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>THE SHADOW</h3>
+                <p>WATCH VIDEO</p>
+            </div>
+
+        </a>
+
+        <a class="card"
+           href="https://youtu.be/ek7MruTrdvc"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/ek7MruTrdvc/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>THE UNKNOWN</h3>
+                <p>WATCH VIDEO</p>
+            </div>
+
+        </a>
+
+        <a class="card"
+           href="https://youtu.be/1GS92jB6Vbc"
+           target="_blank">
+
+            <img src="https://img.youtube.com/vi/1GS92jB6Vbc/maxresdefault.jpg">
+
+            <div class="card-content">
+                <h3>THE JOURNEY</h3>
+                <p>WATCH VIDEO</p>
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+
+    <div class="section-title">
+        ABOUT
+        <span>HANTU RIMBA_Ai</span>
+    </div>
+
+    <div class="about">
+
+        <p>
+            Hantu Rimba_Ai is an independent digital music project
+            from Indonesia, combining music, stories and visual worlds
+            into one continuing journey.
+        </p>
+
+        <br>
+
+        <p>
+            This website is the official home for the journey,
+            releases and visual works of Hantu Rimba_Ai.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    <strong>HANTU RIMBA_Ai</strong>
+
+    Music • Kehidupan • Vlog • Relaksasi
+
+    <br><br>
+
+    © 2026 HANTU RIMBA_Ai
+
+</footer>
+
+<script>
+
+function toggleMenu(){
+
+    document
+        .getElementById("menu")
+        .classList
+        .toggle("active");
+
+}
+
+</script>
+
+</body>
+</html>
