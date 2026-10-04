@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HANTU RIMBA_Ai</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #050505;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px 20px;
+      background:
+        radial-gradient(circle at center, #241010 0%, #090909 45%, #000 100%);
+    }
+
+    .skull {
+      font-size: 70px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 42px;
+      letter-spacing: 4px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #aaa;
+      font-size: 15px;
+      max-width: 500px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(0,0,0,.95);
+      border-bottom: 1px solid #222;
+      display: flex;
+      overflow-x: auto;
+      padding: 12px 10px;
+      gap: 8px;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      padding: 8px 13px;
+      border-radius: 20px;
+      background: #111;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+
+    nav a:hover {
+      background: #222;
+      color: #fff;
+    }
+
+    section {
+      padding: 55px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      border-left: 4px solid #8b0000;
+      padding-left: 12px;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 13px 22px;
+      background: #8b0000;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .hero-button:hover {
+      background: #b00000;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #101010;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 22px;
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #555;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #fff;
+      text-decoration: none;
+      background: #222;
+      padding: 8px 13px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .playlist {
+      background: linear-gradient(135deg, #130707, #0b0b0b);
+      border: 1px solid #2b1616;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      border-top: 1px solid #222;
+      color: #777;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 30px;
+      }
+
+      .skull {
+        font-size: 55px;
+      }
+
+      section {
+        padding: 40px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="home">
+    <div class="skull">☠️</div>
+
+    <h1>HANTU RIMBA_Ai</h1>
+
+    <p class="subtitle">
+      Dunia musik, cerita, dan suasana dari sebuah proyek digital misterius.
+    </p>
+
+    <a
+      class="hero-button"
+      href="https://www.youtube.com/@HantuRimba_Ai"
+      target="_blank">
+      ▶ YouTube
+    </a>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#playlist">Playlist</a>
+    <a href="#albums">Albums</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="playlist">
+    <h2>Playlist</h2>
+
+    <div class="card playlist">
+      <h3>HANTU RIMBA_Ai — Full Journey</h3>
+
+      <p>
+        Dengarkan perjalanan musik Hantu Rimba_Ai dari awal hingga rilisan terbaru.
+      </p>
+
+      <a
+        href="https://youtube.com/playlist?list=PLGKmz_9zfn2h0z70cJwewpL0cUkdmZusj"
+        target="_blank">
+        ▶ Buka Playlist
+      </a>
+    </div>
+  </section>
+
+  <section id="albums">
+    <h2>Albums</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>☠️ HANTU RIMBA VOL. 1</h3>
+        <p>Awal perjalanan Hantu Rimba_Ai.</p>
+      </div>
+
+      <div class="card">
+        <h3>☠️ HANTU RIMBA VOL. 2</h3>
+        <p>Perjalanan berlanjut dengan suasana yang semakin gelap.</p>
+      </div>
+
+      <div class="card">
+        <h3>☠️ HANTU RIMBA VOL. 3</h3>
+        <p>Salah satu bagian penting dalam perjalanan musik Hantu Rimba_Ai.</p>
+      </div>
+
+      <div class="card">
+        <h3>☠️ HANTU RIMBA VOL. 4</h3>
+        <p>Official Album 2026.</p>
+
+        <a
+          href="https://youtube.com/playlist?list=PLGKmz_9zfn2h0z70cJwewpL0cUkdmZusj"
+          target="_blank">
+          Dengarkan
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+
+    <div class="card">
+      <p>
+        Hantu Rimba_Ai adalah proyek musik digital anonim dari Indonesia,
+        sebuah kolaborasi antara manusia dan teknologi AI untuk menciptakan
+        musik, cerita, dan pengalaman visual.
+      </p>
+
+      <br>
+
+      <p>
+        Musik • Kehidupan • Vlog • Relaksasi
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+
+    <div class="card">
+      <p>
+        Temukan rilisan dan perkembangan terbaru Hantu Rimba_Ai melalui
+        channel YouTube.
+      </p>
+
+      <a
+        href="https://www.youtube.com/@HantuRimba_Ai"
+        target="_blank">
+        Kunjungi YouTube
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>☠️ HANTU RIMBA_Ai</p>
+    <p>Music • Kehidupan • Vlog • Relaksasi</p>
+    <br>
+    <p>© 2026 Hantu Rimba_Ai</p>
+  </footer>
+
+</body>
+</html>
